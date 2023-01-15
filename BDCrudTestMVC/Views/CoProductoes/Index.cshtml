@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BDCrudTestMVC.Models.CoProducto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo registro</a>
+</p>
+
+<form asp-action="Usp_Sel_Co_Productos">
+     <p>
+        Buscar: <input type="number" min="1" max="2" name="id" class="form-text" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-dark"/>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CNombProdu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NPrecioProd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NIdCategoriNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNombProdu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NPrecioProd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIdCategoriNavigation.NIdCategori)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NIdProduct">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NIdProduct">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NIdProduct">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
